@@ -14,9 +14,9 @@ class _ChooseLocation extends State<ChooseLocation> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('hi'),
+        title: const Text('hi'),
       ),
-      body: Text('Choose Location'),
+      body: const Text('Choose Location'),
     );
   }
 }
