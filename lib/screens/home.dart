@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:world_time/services/DayNightTheme.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -14,10 +15,14 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    data = ModalRoute.of(context)!.settings.arguments as Map;
+    data = data.isNotEmpty
+        ? data
+        : ModalRoute.of(context)!.settings.arguments as Map;
+
+    final theme = data['isDaytime'] ? DayNightTheme.day : DayNightTheme.night;
 
     return Scaffold(
-        backgroundColor: const Color(0xffD9C5B2),
+        backgroundColor: theme.backgroundColor,
         body: SafeArea(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -30,7 +35,7 @@ class _HomeState extends State<Home> {
                     style: TextStyle(
                       fontSize: 28.0,
                       letterSpacing: 1.5,
-                      color: Color(0xff34312D),
+                      color: theme.textColor,
                     ),
                   )
                 ],
@@ -44,16 +49,15 @@ class _HomeState extends State<Home> {
                   fontSize: 60.0,
                   fontWeight: FontWeight.bold,
                   letterSpacing: 1.5,
-                  color: Color(0xff34312D),
+                  color: theme.textColor,
                 ),
               ),
               SizedBox(
                 height: 20.0,
               ),
               Container(
-                decoration: const BoxDecoration(
-                    gradient: LinearGradient(
-                        colors: [Color(0xff34312D), Color(0xff14110F)]),
+                decoration: BoxDecoration(
+                    gradient: theme.buttonGradient,
                     borderRadius: BorderRadius.all(Radius.circular(80.0))),
                 child: TextButton.icon(
                   style: TextButton.styleFrom(
@@ -63,14 +67,22 @@ class _HomeState extends State<Home> {
                       backgroundColor: Colors.transparent),
                   icon: Icon(
                     Icons.location_pin,
-                    color: Color(0xffD9C5B2),
+                    color: theme.buttonTextColor,
                   ),
                   label: Text(
                     'Choose Location ',
-                    style: TextStyle(color: Color(0xffD9C5B2)),
+                    style: TextStyle(color: theme.buttonTextColor),
                   ),
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/location');
+                  onPressed: () async {
+                    dynamic result =
+                        await Navigator.pushNamed(context, '/location');
+                    setState(() {
+                      data = {
+                        'location': result['location'],
+                        'time': result['time'],
+                        'isDaytime': result['isDaytime']
+                      };
+                    });
                   },
                 ),
               )
