@@ -74,8 +74,11 @@ class _HomeState extends State<Home> {
                     style: TextStyle(color: theme.buttonTextColor),
                   ),
                   onPressed: () async {
-                    dynamic result =
-                        await Navigator.pushNamed(context, '/location');
+                    dynamic result = await Navigator.pushNamed(
+                        context, '/location',
+                        arguments: {
+                          'theme': theme,
+                        });
                     setState(() {
                       data = {
                         'location': result['location'],

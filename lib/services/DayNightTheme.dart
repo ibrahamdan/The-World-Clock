@@ -17,12 +17,12 @@ class DayNightTheme {
       textColor: Color(0xff34312D),
       buttonTextColor: Color(0xffD9C5B2),
       buttonGradient:
-          LinearGradient(colors: [Color(0xff34312D), Color(0xff14110F)]));
+          LinearGradient(colors: [Color(0xff34312D), Color(0xff7E7F83)]));
 
   static final DayNightTheme night = DayNightTheme(
       backgroundColor: Color(0xff34312D),
       textColor: Color(0xffD9C5B2),
       buttonTextColor: Color(0xff34312D),
       buttonGradient:
-          LinearGradient(colors: [Color(0xffD9C5B2), Color(0xffDFCFBF)]));
+          LinearGradient(colors: [Color(0xff34312D), Color(0xffF3F3F4)]));
 }
