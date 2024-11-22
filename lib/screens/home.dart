@@ -40,7 +40,7 @@ class _HomeState extends State<Home> {
                   )
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20.0,
               ),
               Text(
@@ -52,13 +52,13 @@ class _HomeState extends State<Home> {
                   color: theme.textColor,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20.0,
               ),
               Container(
                 decoration: BoxDecoration(
                     gradient: theme.buttonGradient,
-                    borderRadius: BorderRadius.all(Radius.circular(80.0))),
+                    borderRadius: const BorderRadius.all(Radius.circular(80.0))),
                 child: TextButton.icon(
                   style: TextButton.styleFrom(
                       shape: const RoundedRectangleBorder(
